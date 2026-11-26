@@ -1,0 +1,848 @@
+/* =========================================================
+   CHRONICLES OF CR7
+   Manchester United palette. HTML + CSS only, no JavaScript.
+   ========================================================= */
+
+:root {
+  --red:    #da291c;
+  --red-dk: #7a0f08;
+  --yellow: #fbe122;
+  --black:  #050505;
+  --panel:  #0d0d0d;
+  --card:   #111111;
+  --white:  #ffffff;
+  --grey:   #8a8a8a;
+  --grey-d: #5a5a5a;
+  --line:   #1c1c1c;
+
+  --display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --body:    "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono:    "JetBrains Mono", "Courier New", monospace;
+
+  --bar: 2.5rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+p { margin: 0 0 1rem; }
+
+/* Shared micro-label used throughout the dossier */
+.label {
+  margin: 0 0 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.label-red { color: var(--red); }
+.right { margin-left: auto; }
+
+.dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background-color: var(--red);
+  vertical-align: middle;
+}
+
+/* =========================================================
+   1. STICKY HEADER
+   ========================================================= */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: var(--bar);
+  padding: 0 0.9rem;
+  background-color: rgba(5, 5, 5, 0.92);
+  border-bottom: 1px solid var(--red);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  font-weight: bold;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.tb-left  { color: var(--white); }
+.tb-right { margin-left: auto; color: var(--grey); white-space: nowrap; }
+
+.tb-badge {
+  padding: 0.25em 0.7em;
+  background-color: var(--yellow);
+  color: #1a1600;
+  letter-spacing: 0.2em;
+}
+
+.dot-rec {
+  background-color: var(--red);
+  animation: blink 1.4s steps(1, end) infinite;
+}
+
+@keyframes blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0.15; } }
+
+/* Scroll progress line along the bottom of the bar */
+.tb-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* =========================================================
+   2. HERO
+   ========================================================= */
+.hero { position: relative; }
+
+.hero-shot {
+  position: relative;
+  margin: 0;
+  height: 68vh;
+  min-height: 24rem;
+  background-image:
+    radial-gradient(ellipse at 50% 35%, #4a1410 0%, #1a0705 45%, var(--black) 100%);
+  overflow: hidden;
+}
+
+.hero-shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(180deg,
+    rgba(5,5,5,0.55) 0%,
+    rgba(5,5,5,0) 28%,
+    rgba(5,5,5,0.15) 55%,
+    rgba(5,5,5,0.97) 100%);
+}
+
+.hero-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  opacity: 1;
+  animation: slow-zoom 18s ease-out both;
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1.12); }
+  to   { transform: scale(1); }
+}
+
+.hero-copy {
+  position: relative;
+  margin-top: -3.5rem;
+  padding: 0 1.1rem 2.5rem;
+}
+
+.chapter {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: bold;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--grey);
+  animation: rise 0.8s 0.1s ease-out both;
+}
+
+.tag {
+  padding: 0.25em 0.6em;
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.lockup {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 14vw, 5.5rem);
+  font-weight: normal;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.lockup .ghost,
+.lockup .solid { display: block; }
+
+.lockup .ghost {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.55);
+  animation: rise 0.9s 0.2s ease-out both;
+}
+
+.lockup .solid {
+  color: var(--white);
+  animation: rise 0.9s 0.35s ease-out both;
+}
+
+.hero-meta {
+  margin: 0.9rem 0 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: bold;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  animation: rise 0.9s 0.5s ease-out both;
+}
+
+.hero-sub {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--grey);
+  animation: rise 0.9s 0.6s ease-out both;
+}
+
+.scroll-cue {
+  margin: 1.6rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--grey-d);
+  text-align: right;
+}
+
+.scroll-cue span {
+  display: inline-block;
+  animation: nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(5px); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   3. FILE DIVIDER
+   ========================================================= */
+.filebar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1.1rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.filebar .rule {
+  flex: 1;
+  height: 1px;
+  background-color: var(--red-dk);
+}
+
+/* =========================================================
+   4. SIUUU / BIOGRAPHY
+   ========================================================= */
+.siu-section {
+  position: relative;
+  padding-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+.siu-mark {
+  margin: 0;
+  padding: 0.6rem 0 0 0.5rem;
+  font-family: var(--display);
+  font-size: clamp(3rem, 17vw, 7rem);
+  line-height: 0.8;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--red-dk);
+}
+
+.siu-stage {
+  height: 42vh;
+  min-height: 15rem;
+  margin-top: -0.5rem;
+  background-image:
+    linear-gradient(180deg, var(--black) 0%, rgba(5,5,5,0.1) 22%, rgba(5,5,5,0.35) 60%, rgba(5,5,5,0.96) 100%),
+    url("images/stadium-night.png"),
+    radial-gradient(ellipse at 50% 80%, #2a2a2e 0%, #0b0b0d 55%, var(--black) 100%);
+  background-size: cover, cover, cover;
+  background-position: center, 50% 38%, center;
+}
+
+.siu-card {
+  margin: -2rem 1.1rem 0;
+  padding: 1.4rem 1.2rem 1rem;
+  background-color: var(--panel);
+  border-left: 3px solid var(--red);
+}
+
+.pull { margin: 0 0 1.1rem; }
+
+.pull p {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.siu-card p { color: #b9b9b9; font-size: 0.82rem; }
+
+.siu-foot {
+  display: flex;
+  margin: 1.2rem 0 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--grey-d);
+}
+
+/* =========================================================
+   5. NUMBERS
+   ========================================================= */
+.numbers {
+  padding: 3rem 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.numbers h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 8vw, 3rem);
+  font-weight: normal;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.numbers h2 em { font-style: normal; color: var(--red); }
+
+.numbers .sub {
+  font-size: 0.72rem;
+  color: var(--grey-d);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-top: 1.5rem;
+  background-color: var(--line);
+  border: 1px solid var(--line);
+}
+
+.cell {
+  position: relative;
+  padding: 1.1rem 0.9rem 1.2rem;
+  background-color: var(--panel);
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+
+.cell:hover { background-color: #161616; }
+
+.ghost-word {
+  position: absolute;
+  right: -0.3rem;
+  bottom: -0.9rem;
+  font-family: var(--display);
+  font-size: 3.4rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.035);
+  pointer-events: none;
+}
+
+.figure {
+  position: relative;
+  margin: 0;
+  font-family: var(--display);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--yellow);
+}
+
+.cell-name {
+  position: relative;
+  margin: 0.3rem 0 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.cell-note {
+  position: relative;
+  margin: 0;
+  font-size: 0.62rem;
+  color: var(--grey-d);
+}
+
+.cell-note.red    { color: var(--red); }
+.cell-note.yellow { color: var(--yellow); }
+
+.record {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin: 1px 0 0;
+  padding: 0.85rem 0.9rem;
+  background-color: var(--red);
+}
+
+.chip {
+  padding: 0.3em 0.7em;
+  background-color: var(--black);
+  color: var(--yellow);
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.record-main {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+}
+
+.record-rank {
+  margin-left: auto;
+  font-family: var(--display);
+  font-size: 1.5rem;
+  color: var(--black);
+}
+
+/* =========================================================
+   6. PORTRAIT
+   ========================================================= */
+.portrait {
+  position: relative;
+  height: 78vh;
+  min-height: 26rem;
+  background-image:
+    linear-gradient(180deg, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0) 38%, rgba(5,5,5,0.2) 70%, rgba(5,5,5,0.95) 100%),
+    url("images/portrait.png"),
+    radial-gradient(ellipse at 70% 45%, #3a3a3d 0%, #121214 50%, var(--black) 100%);
+  background-size: cover, cover, cover;
+  background-position: center, 55% 25%, center;
+}
+
+.portrait-copy {
+  padding: 2.2rem 1.1rem 0;
+}
+
+.portrait-quote {
+  margin: 0;
+  max-width: 11ch;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 7vw, 2.4rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   7. DIRECT QUOTE
+   ========================================================= */
+.quotebar {
+  padding: 1.6rem 1.1rem 1.8rem;
+  background-color: var(--panel);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+}
+
+.qb-head,
+.qb-foot {
+  display: flex;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--grey-d);
+}
+
+.quotebar blockquote { margin: 1.1rem 0; }
+
+.quotebar blockquote p {
+  margin: 0 0 0.9rem;
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 5vw, 1.9rem);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.quotebar blockquote footer {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.qb-foot { justify-content: flex-end; }
+
+/* =========================================================
+   8. CHRONOLOGY
+   ========================================================= */
+.chrono {
+  padding: 3rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.chrono-head {
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+}
+
+.chrono-head .label { margin: 0; }
+
+.chrono-head .years {
+  margin-left: auto;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: var(--red);
+}
+
+.chrono h2 {
+  margin: 0.4rem 0 1.6rem;
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 8vw, 3rem);
+  font-weight: normal;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--line);
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 1.6rem 1.3rem;
+  transition: border-color 0.3s;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 0.45rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--red);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.timeline li:hover::before {
+  background-color: var(--yellow);
+  box-shadow: 0 0 0 4px rgba(251, 225, 34, 0.18);
+}
+
+.t-year {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.25rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.chip-sm {
+  padding: 0.2em 0.55em;
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 0.42rem;
+  letter-spacing: 0.18em;
+}
+
+.timeline h3 {
+  margin: 0 0 0.3rem;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.timeline p:not(.t-year) {
+  margin: 0;
+  font-size: 0.74rem;
+  color: var(--grey-d);
+}
+
+/* =========================================================
+   9. CLOSING
+   ========================================================= */
+.closing {
+  padding: 3rem 1.1rem 1.5rem;
+  text-align: center;
+}
+
+.chip-outline {
+  display: inline-block;
+  margin: 0 0 1.2rem;
+  padding: 0.35em 0.9em;
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.close-small,
+.close-big {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 8vw, 2.8rem);
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.close-big { color: var(--red); }
+
+.close-body {
+  max-width: 30rem;
+  margin: 1rem auto 1.6rem;
+  font-size: 0.74rem;
+  color: var(--grey-d);
+}
+
+.btn {
+  display: block;
+  padding: 0.95rem 1rem;
+  background-color: var(--red);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.btn:hover { background-color: var(--yellow); color: var(--black); }
+
+.btn span {
+  display: inline-block;
+  transition: transform 0.25s;
+}
+
+.btn:hover span { transform: translateX(5px); }
+
+.btn-text {
+  display: inline-block;
+  margin-top: 1.1rem;
+  color: var(--grey);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.25s;
+}
+
+.btn-text:hover { color: var(--yellow); }
+
+.colophon {
+  display: flex;
+  margin: 2.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  font-weight: bold;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--grey-d);
+}
+
+.byline {
+  margin: 1.6rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.byline-label,
+.byline-name,
+.byline-meta { display: block; }
+
+.byline-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.byline-name {
+  margin: 0.35rem 0 0.3rem;
+  font-family: var(--display);
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.byline-meta {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--grey-d);
+}
+
+/* =========================================================
+   SCROLL-DRIVEN ANIMATION
+   Guarded: without support, content stays visible.
+   ========================================================= */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 32%;
+  }
+
+  .tb-progress {
+    animation: fill linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  .siu-mark {
+    animation: drift linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 60%;
+  }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes drift {
+  from { transform: translateX(-4%); }
+  to   { transform: translateX(6%); }
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+@media (min-width: 48rem) {
+  body { font-size: 16px; }
+
+  .topbar  { padding: 0 2rem; font-size: 0.6rem; }
+  .filebar { padding: 0.7rem 2rem; }
+
+  .hero-shot { height: 86vh; }
+  .hero-copy { margin-top: -6rem; padding: 0 2rem 4rem; }
+  .lockup    { font-size: clamp(5rem, 11vw, 9rem); }
+
+  .siu-stage { height: 60vh; }
+  .siu-card  { max-width: 42rem; margin: -4rem 2rem 0; padding: 2rem; }
+  .pull p    { font-size: 2rem; }
+
+  .numbers,
+  .chrono    { padding: 5rem 2rem; }
+  .grid      { grid-template-columns: repeat(4, 1fr); }
+  .ghost-word { font-size: 4.5rem; }
+
+  .record-main { font-size: 1.4rem; }
+  .record-rank { font-size: 2rem; }
+
+  .portrait-copy { padding: 4rem 2rem 0; }
+  .quotebar      { padding: 2.5rem 2rem; }
+
+  .timeline li { padding-left: 2rem; }
+  .timeline h3 { font-size: 1.3rem; }
+
+  .closing { padding: 5rem 2rem 2rem; }
+  .byline-name { font-size: 2.2rem; }
+  .btn     { display: inline-block; padding: 1.1rem 3rem; }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+}
